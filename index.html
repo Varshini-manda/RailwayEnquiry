@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Railway Enquiry Form</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; background:#f3f7fb; padding:30px; }
+    .card { background:#fff; max-width:420px; margin:auto; padding:20px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+    label{display:block;margin-top:10px;font-weight:600;}
+    input, select { width:100%; padding:8px; margin-top:6px; border:1px solid #ccc; border-radius:4px; }
+    button{ margin-top:14px; width:100%; padding:10px; background:#1565c0; color:white; border:none; border-radius:5px; cursor:pointer; }
+    .result{ margin-top:12px; padding:10px; background:#e8f5e9; border-left:4px solid #2e7d32; display:none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Railway Enquiry Form</h2>
+    <label for="name">Passenger Name</label>
+    <input id="name" type="text" placeholder="Enter name">
+
+    <label for="from">From Station</label>
+    <input id="from" type="text" placeholder="Starting station">
+
+    <label for="to">To Station</label>
+    <input id="to" type="text" placeholder="Destination">
+
+    <label for="date">Journey Date</label>
+    <input id="date" type="date">
+
+    <label for="class">Class</label>
+    <select id="class">
+      <option>General</option>
+      <option>Sleeper (SL)</option>
+      <option>AC 3 Tier</option>
+      <option>AC 2 Tier</option>
+      <option>AC First Class</option>
+    </select>
+
+    <button onclick="submitForm()">Submit Enquiry</button>
+
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    function submitForm() {
+      const name = document.getElementById('name').value.trim();
+      const from = document.getElementById('from').value.trim();
+      const to = document.getElementById('to').value.trim();
+      const date = document.getElementById('date').value;
+      const cls = document.getElementById('class').value;
+
+      if (!name || !from || !to || !date) {
+        alert('Please fill all required fields.');
+        return;
+      }
+
+      const out = `
+        <h3>Enquiry Submitted</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>From:</strong> ${from}</p>
+        <p><strong>To:</strong> ${to}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Class:</strong> ${cls}</p>
+      `;
+      const box = document.getElementById('result');
+      box.innerHTML = out;
+      box.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
